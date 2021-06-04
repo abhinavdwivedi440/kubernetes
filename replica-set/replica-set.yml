@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-conatiner
+
+  replicas: 3
+
+  # selector is a major difference in replication-controller and replica-set
+  # in case of replica set a user input is required for this property
+  selector:
+    matchLabels:
+      type: front-end

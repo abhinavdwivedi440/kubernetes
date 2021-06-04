@@ -1,0 +1,104 @@
+
+# minikube
+***********
+
+
+minikube start --driver=virtualbox
+minikube status
+------------------------------------------------------------------------------------------------
+
+
+
+
+# kubectl -> is used to deploy and manage application on a kubernetes cluster
+**********
+
+
+kubectl run hello-minikube    # deploy an application on the cluster
+kubectl cluseter-info
+kubectl run nginx --image nginx # creates a pod and deploys an instance of nginx docker image
+-------------------------------------------------------------------------------------------------
+
+# nodes
+********
+
+kubectl get nodes
+--------------------------------------------------------------------------------------------------
+
+
+
+# pods
+*******
+
+kubectl create -f pod.yml
+         or
+kubectl apply -f pod.yml
+
+
+kubectl get pods
+kubectl get pods -A
+kubectl describe pod pod-name
+kubectl get pods -o wide
+kubectl run pod-name --image=image-name --dry-run=client -o yaml > pod.yaml         # to generate pod.yaml file
+
+
+kubectl edit pod redis
+--------------------------------------------------------------------------------------
+
+
+
+# replication-controllers
+**************************
+
+kubectl create -f replication-controller.yml
+                or
+kubectl apply -f replication-controller.yml
+
+kubectl get replicationcontroller
+kubectl get pods
+kubectl delete replicationcontroller name-of-rep-controller
+-------------------------------------------------------------------------------------
+
+
+
+# replicaset
+*************
+
+kubectl create -f replicaset.yml
+            or
+kubectl apply -f replicaset.yml
+
+kubectl get replicaset
+kubectl describe replicaset
+kubectl get pods
+kubectl delete replicaset name-of-replicaset
+
+
+# scaling up
+# multiple ways
+
+# 1. either change the number of replicas in replica-set.yml
+# and run :
+kubectl replace -f replica-set.yml
+
+# 2. run the scale command :
+kubectl scale --replicas=6 -f replica-set.yml
+kubectl scale --replicas=6 replicaset name-of-replica-set
+--------------------------------------------------------------------------------------
+
+
+
+# deployments
+**************
+
+kubectl create -f deployment.yml
+            or
+kubectl apply -f deployment.yml
+
+kubectl get deployments
+kubectl get replicaset
+kubectl get pods
+
+kubectl get all           # to get all the objects at once ie deployments, replicaset, pods
+-----------------------------------------------------------------------------------------------------
+
