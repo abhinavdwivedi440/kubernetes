@@ -2,22 +2,21 @@
 # minikube
 ***********
 
-
 minikube start --driver=virtualbox
 minikube status
 ------------------------------------------------------------------------------------------------
 
 
 
-
 # kubectl -> is used to deploy and manage application on a kubernetes cluster
 **********
-
 
 kubectl run hello-minikube    # deploy an application on the cluster
 kubectl cluseter-info
 kubectl run nginx --image nginx # creates a pod and deploys an instance of nginx docker image
 -------------------------------------------------------------------------------------------------
+
+
 
 # nodes
 ********
@@ -100,5 +99,44 @@ kubectl get replicaset
 kubectl get pods
 
 kubectl get all           # to get all the objects at once ie deployments, replicaset, pods
------------------------------------------------------------------------------------------------------
+
+
+
+# scaling up
+# multiple ways
+
+# 1. either change the number of replicas in deployment.yml
+# and run :
+kubectl replace -f deployment.yml
+
+# 2. run the scale command :
+kubectl scale --replicas=6 -f deployment.yml
+kubectl scale --replicas=6 deployment name-of-deployment
+
+
+
+# Rollout and Versioning
+
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+kubectl rollout undo deployment/myapp-deployment
+
+# strategies:
+1. Recreate
+2. Rolling Update    # default deployment strategy
+
+
+# updating
+# two ways:
+
+# 1. edit deployment.yml then apply the changes by running:
+kubectl apply -f deployment.yml
+
+# 2. kubectl set image deployment/myapp-deployment nginx=nginx:1.20
+
+
+kubectl create -f deployment.yml --record     # --record is to record the CHANGE-CAUSE
+-------------------------------------------------------------------------------------------------------
+
+
 
