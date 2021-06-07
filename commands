@@ -150,3 +150,11 @@ Service Types:
 
 kubectl create -f service.yml
 kubectl get services
+-------------------------------------------------------------------------------------------------------
+
+
+
+miscellaneous
+----------------
+
+kubectl get pods,svc    # to get pods and services at once
