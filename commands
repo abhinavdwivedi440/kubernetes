@@ -139,4 +139,14 @@ kubectl create -f deployment.yml --record     # --record is to record the CHANGE
 -------------------------------------------------------------------------------------------------------
 
 
+Services
+--------
 
+Service Types:
+1. NodePort
+2. ClusterIP   # default type
+3. LoadBalancer
+
+
+kubectl create -f service.yml
+kubectl get services
